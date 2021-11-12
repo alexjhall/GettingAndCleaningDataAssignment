@@ -1,0 +1,92 @@
+---
+title: "README"
+subtitle: Getting and Cleaning Data Assignment
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction
+This README accompanies the Codebook and run_analysis.R script, developed as part of the 
+'Getting and Cleaning Data' assignment. 
+
+It contains:
+
+* The contents of this repo
+
+* The original instructions for the assignment.
+
+* Details of the contents of the original data.
+
+* Explanation of the analysis based on the original data.
+
+
+# Repo contents
+This repo (https://github.com/alexjhall/GettingAndCleaningDataAssignment) contains the following:
+
+* This README markdown document
+
+* The codebook markdown document describing the data and how it was transformed to produce the FinalTidyData summary table. Note that this does not contain the actual code to perform the transformations.
+
+* The run_analysis.R script which performs the transformation steps outlined in the codebook to produce the FinalTidyData summary table.
+
+* The FinalTidyData summary table itself.
+
+
+## The assignment
+The purpose of this project is to demonstrate your ability to collect, work with, and clean a data set. The goal is to prepare tidy data that can be used for later analysis. You will be graded by your peers on a series of yes/no questions related to the project. You will be required to submit: 1) a tidy data set as described below, 2) a link to a Github repository with your script for performing the analysis, and 3) a code book that describes the variables, the data, and any transformations or work that you performed to clean up the data called CodeBook.md. You should also include a README.md in the repo with your scripts. This repo explains how all of the scripts work and how they are connected.
+
+One of the most exciting areas in all of data science right now is wearable computing - see for example this article (broken link). Companies like Fitbit, Nike, and Jawbone Up are racing to develop the most advanced algorithms to attract new users. The data linked to from the course website represent data collected from the accelerometers from the Samsung Galaxy S smartphone. A full description is available at the site where the data was obtained:
+
+<link url> http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones 
+
+Here are the data for the project:
+
+<link url>  https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip  
+
+You should create one R script called run_analysis.R that does the following. 
+
+1. Merges the training and the test sets to create one data set.
+
+2. Extracts only the measurements on the mean and standard deviation for each measurement. 
+
+3. Uses descriptive activity names to name the activities in the data set
+
+4. Appropriately labels the data set with descriptive variable names. 
+
+5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+
+
+
+
+
+
+# The original data
+The contents of the original data are outlined in the README that accompanied that data, as follows.
+
+```{r}
+cat(readLines("UCI HAR Dataset/README.txt"), sep = '\n')
+```
+
+
+# Analysis explanation
+At a high level, the run_analysis.R script reads the original data, combines its separate elements into a single dataset, gives this dataset descriptive column and value labels, then produces a summary table of the mean and standard deviations of feature measurements, grouped by subject, activity and their dataset group (test or train).
+
+For a more detailed walk through, please see the codebook or the run_analysis.R script itself which is appropriately commented.
+
+## Intepretation
+Some parts of this assignment could be interpreted in different ways, especially the decision on which feature measurements to choose when asked to only extract the mean and standard deviation of the full 561 features. 
+
+In my case, I decided to use the literal interpretation of this instruction and only extracted measurements which explicitly only said 'mean' or 'std'. I therefore ignored 'meanFreq' and means associated with 'angle' measurements. I considered that these were aggregates of aggregates and would therefore not be appropriate for the next phase of data analysis, but of course it very much depends on what data analysis is intended, which is not known at this stage.
+
+There is also some subjectivity with regards to whether the FinalTidyData table does indeed adhere by the tidy data principles, outlined by Hadley Wickham. 
+I believe that the table does adhere to these principles because each row is an observation, each column is a single variable and the data all correspond to same experiment and would be analysed together.
+
+As above, depending on intended analysis, this table could be split or grouped differently. For example, split by activity so that each row corresponded to a single subject. It depends on what the hypothesis in question is.
+
+
+
+
+
