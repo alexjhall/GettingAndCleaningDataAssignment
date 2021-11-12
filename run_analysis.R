@@ -206,8 +206,8 @@
         summarise(across(`tBodyAcc-mean()-X`:`fBodyGyroJerkMag-std()`, mean)) 
       
 ## Output final tidy data to .txt
-  write_delim(FinalTidyData,
+  write.table(FinalTidyData,
               "FinalTidyData.txt",
-              delim = ",")
+              row.names = FALSE)
   
   
